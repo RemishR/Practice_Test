@@ -1,2 +1,1087 @@
 creates test.txt file
-f
+
+
+# -*- coding: utf-8 -*-
+"""
+Created on Wed Jul  5 19:20:00 2023
+
+@author: rremi
+"""
+
+# -*- coding: utf-8 -*-
+"""
+Created on Tue Jun 20 21:17:29 2023
+
+@author: rremi
+"""
+#%%
+######## **************#######
+####          numpy      ####
+########***************#######
+
+
+
+import numpy as np
+
+array=np.array([[1,2,3],[4,5,6]])
+
+np1=np.array([[1,3],[4,5]])
+np2=np.array([[3,4],[5,7]])
+
+mnp=np1@np2  #matrix multiplication
+
+mnp2=np1*np2                    # element multiplication
+mnp3=np.dot(np1,np2)            # matrix multiplication
+mnp4 =np.multiply(np1,np2)      # element multiplication
+
+
+sum1=np1+np2                    # Element by element additon
+sub1=np1-np2
+sub2=np.subtract(np1,np2)
+
+E_sum=np.sum(np1)               #summation of elements in np1 
+
+broad_nump=np1+3                #scalar addition-broad casting
+np3=np.array([[3,4]])
+bsum=np1+np3                    #adding two array of diff size - broad casting
+
+
+D=np.divide(np1,5)              #divide
+D2=np.floor_divide(np1,5)
+np.math.sqrt(10)
+b=np.math.sqrt(10)
+print(b)
+ND=np.random.standard_normal((3,4))
+UD=np.random.uniform(1,12,(3,4))
+ranflt=np.random.rand() #random float
+ranint=np.random.randint  #random integer
+
+Random_Ar=np.random.randint(1,50,(2,5))
+
+ze=np.zeros((3,4))
+
+ones=np.ones((3,4))
+
+
+filter_Ar= np.logical_and(Random_Ar>30,Random_Ar<50)
+
+F_Random_Ar=Random_Ar[filter_Ar]
+
+##   statistics
+
+Data_N=np.array([1,3,4,5,7,9])
+mean_N=np.mean(Data_N)
+Median_N=np.median(Data_N)
+ 
+Var_N=np.var(Data_N)
+
+SD_N=np.std(Data_N)
+
+Nump_array=np.array([[1,2,3],[4,5,6]])
+
+
+var_Nump_row=np.var(Nump_array,axis=1)  #varaince calculated on row wise
+
+var_Nump_col=np.var(Nump_array,axis=0)   #varaince calculated on col wise
+
+#%%
+########***************#######
+####          Pandas      ####
+########***************#######
+
+
+
+import pandas as pd
+
+"""
+series
+
+"""
+# creating series
+Age= pd.Series([10,20,30,40],index=['age1','age2','age3','ag e'])
+
+Age.age3
+Filtered_Age=Age[Age>10]
+
+
+Age.values  #calling values of the series
+
+Age.index   #calling indices of the series
+
+
+Age.index=['a1','a2','a3','a4']  # change the indices
+#%%
+"""
+Data frame
+"""
+
+import numpy as np
+import pandas as pd
+
+
+DF=np.array([[20,10,8],[25,8,10],[27,5,3],[30,9,7]])
+
+Data_set=pd.DataFrame(DF)
+
+Data_set=pd.DataFrame(DF,index=['s1','s2','s3','s4'])
+
+Data_set=pd.DataFrame(DF,index=['s1','s2','s3','s4'],columns=['Age','Grade1','Grade2'])
+
+
+Data_set['Grade3']=[9,6,7,10]   # adding values to data set
+
+
+"""
+LLC ILEC
+"""
+
+Data_set.loc['s2']  #extract rows using index
+
+
+Data_set.iloc[1][3]  # extract values using row and coumn, here gets the value in 2nd row 4th colmn
+Data_set.iloc[1,3]
+
+Data_set.iloc[:,0] # gets all rows and 1st colm
+
+Filtered_Data=Data_set.iloc[:,1:3] # gets all rows and 2nd and 3rd column
+
+##### pandas5
+
+
+#Data_set=Data_set.drop('Grade1',axis=1)  # removes grade1 column
+
+Data_set=Data_set.replace(10,12)   # replace 10 with 12 data from the dataset
+
+Data_set=Data_set.replace( {12:10,9:30})   # replace data from the dataset using dictioanry for several numbers
+
+# Tail and head method
+
+Data_set.head(3)  # see the first three rows for review data
+
+Data_set.tail(2) # review the las 2 rows
+
+Data_set.sort_values('Grade1',ascending=False) # sort the data in the column Grade1 in decending order
+
+
+Data_set.sort_index(axis=0,ascending=True) # sort the index s1 to s4
+
+
+## read file
+
+Data=pd.read_csv("Data_set.csv")
+
+#%%
+"""
+######## **************#######
+####      Matplotlib      ####
+########***************#######
+
+
+Visualization with Matplotlib
+
+"""
+
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+
+Year=[2010,2011,2012,2013,2014,2015,2016,2017,2018,2019,2020]
+Temp_I=[0.72,0.61,0.65,0.68,0.75,0.90,1.02,0.93,0.85,0.99,1.02]
+
+plt.plot(Year,Temp_I,'go-',linewidth=2,markersize=8)
+plt.xlabel("Year")
+plt.ylabel("Temp_Index")
+plt.title("Global Warming",{'fontsize':12,'horizontalalignment':'right'})
+plt.show()
+#%%
+"""
+line graph
+chap2- plot formats 
+
+"""
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+
+
+month=['a','b''c','d','e','f','g','h','i','j','k','l','z']
+customer1=[1,2,3,4,12,6,7,8,9,5,11,12]
+customer2=[4,5,15,7,8,9,10,11,12,5,14,15]
+
+
+plt.plot(month,customer1,color='blue',label='C1',marker="*")
+plt.plot(month,customer2,color='gold',label='C2',marker="o")
+plt.xlabel("month")
+plt.ylabel('electricity')
+#plt.title('buildings')
+plt.legend(loc='best')
+#plt.title('buildings')
+plt.show()
+
+"""
+line graph
+subplot
+"""
+
+plt.subplot(1,2,1) #row,col,graph number
+plt.plot(month,customer1,color='blue',label='C1',marker="*")
+plt.xlabel("month")
+plt.ylabel('electricity')
+#plt.show()
+
+plt.subplot(1,2,2)
+plt.plot(month,customer2,color='gold',label='C2',marker="o")
+plt.xlabel("month")
+#plt.ylabel('electricity')
+plt.show()
+
+"""
+Scatter plot
+
+"""
+
+plt.scatter(month,customer1,color='red',label='customer1')
+plt.scatter(month,customer2,color='blue',label='customer2')
+plt.xlabel('month')
+plt.ylabel('electric consump')
+#plt.title("scatter plot")
+plt.grid()
+plt.legend(loc='best')
+plt.show()
+
+"""
+
+histogram
+
+gives the distribution of data
+"""
+plt.hist(customer1,bins=40,color="green")
+plt.ylabel('elec consum')
+plt.show()
+
+"""
+bar chart
+plots the magnitude of each xlabels
+"""
+plt.bar(month,customer1,width=0.8,color="red",label='customer1')
+plt.xlabel('month')
+plt.ylabel('electric consump')
+plt.show()
+
+
+# overlapping bar plots
+plt.bar(month,customer1,color="red",label='customer1')
+plt.bar(month,customer2,color='blue',label='customer2')
+plt.xlabel('month')
+plt.ylabel('electric consump')
+plt.show()
+
+
+# plotting bar charts next to one another,
+
+bar_width=0.4
+
+months_b=np.arange(12)
+plt.bar(months_b,customer1,bar_width,color='b',label='customer1')
+plt.bar(months_b+bar_width,customer2,bar_width,color='red',label='customer2')
+
+#replace the xlabels by userdefined
+
+plt.xticks(months_b+(bar_width)/2,('a','b''c','d','e','f','g','h','i','j','k','l','z')  )
+plt.show()
+
+"""
+matplotlib chap-5-Box plots
+
+"""
+plt.boxplot(customer1,notch=False, vert=True)
+
+plt.boxplot([customer1,customer2],patch_artist=True,
+             boxprops=dict(facecolor='red',color='blue'),
+             whiskerprops=dict(color='green'),
+             capprops=dict(color='gold'),
+             medianprops=dict(color='yellow'))
+plt.show()
+
+#%%   
+
+
+"""
+######## **************#######
+####  Data Preprocessing  ####
+########***************#######
+"""
+
+"""
+chap-1 Reading and Modifying data
+
+"""
+import pandas as pd
+Data_set=pd.read_csv('Data_set.csv')
+
+
+Data_set2=pd.read_csv('Data_set.csv',header=2)  # removes the first two rows
+
+
+Data_set3=Data_set2.rename(columns={'Temperature':'Temp'})  #rename to Temp
+
+Data_set4=Data_set3.drop('No. Occupants',axis=1)
+
+#Data_set4=Data_set3.drop('No. Occupants',axis=1,inplace=True)  # to reflect the change in data set
+
+
+"""
+chap-3  Statistics2
+
+"""
+
+#preprocessing Statistics
+
+
+Data_set5=Data_set4.drop(2,axis=0)  # remove the third row, because -4 value is not  seems correct
+
+
+Data_set6=Data_set5.reset_index(drop=True)  # drop is true so that old index will get removed
+
+Data_set6.describe()  # overview of the data
+
+min_item=Data_set6['E_Heat'].min() # gets the min item in the column E_Heat
+Data_set6['E_Heat'][Data_set6['E_Heat']==min_item]  # gets the min value belongs to which row
+
+Data_set6['E_Heat'].replace(-4,21,inplace=True)  # replace the value with new value 21
+
+
+"""
+27. Statistics2 Covariance- relation between two variables (features)
+
+"""
+
+
+Data_set6.cov()   # to see the overview of covariance of all varables
+
+import numpy as np
+
+import seaborn as sn
+import pandas as pd
+
+sn.heatmap(Data_set6.corr())    # plots map based on correlation of variables,ie) correlation matrix
+
+
+"""
+
+28. missing values-1
+
+"""
+
+
+#null -- no value
+#nan- not a number
+
+
+
+Data_set6.info() #shows the info to find the missing values ie)emplty cells only.don't find invalid values
+
+Data_set7=Data_set6.replace('!',np.NaN)  # this will replace the ! to nan. but this will change the entire column from numericals to categorical variables (datatype is 'object')
+
+Data_set7.info() # information of the datset
+
+Data_set7=Data_set7.apply(pd.to_numeric)  # this will change the categorical variable  s (object) to numericals
+
+"""
+
+29. missing values-2
+
+"""
+
+Data_set7.isnull()  # shows where the nan exists in the data set
+
+Data_set7.drop(13,axis=0,inplace=True) # remove the entire row 13, where nan exists
+
+Data_set7.dropna(axis=0,inplace=True) # removes all the row(axis=0) where nan exits
+
+Data_set8=Data_set7.fillna(method='ffill')  # replace the nan with the last observation value. ie) from previous row
+Data_set8=Data_set7.fillna(method='bfill')  # replace the nan with the next observation value. ie) from previous row
+
+from sklearn.impute import SimpleImputer
+
+M_var=SimpleImputer(missing_values=np.nan,strategy='mean')    # missing values are replaced by the mean of the column
+
+M_var.fit(Data_set7)  # feeding the dataset
+
+Data_set9=M_var.transform(Data_set7) # transform and copy in to new data set
+
+
+"""
+30. Outlier-1
+"""
+
+# when a data unusually smaller or bigger than other data, it could (not always) an outlier
+
+
+"""
+30. Outlier-2
+"""
+
+Data_set8.boxplot()  # creates box plots to find the outliers
+
+
+Data_set8['E_Plug'].quantile(0.25) # give qaultile 1 Q1 ie, 25% for E_Plug column
+Data_set8['E_Plug'].quantile(0.75) # give qaultile 1 Q3 ie, 75% for E_Plug column
+
+"""
+outlier-3
+
+"""
+
+Data_set8['E_Plug'].replace(120,42,inplace=True)   # replace the 120 in E_plug column to 42, inpace is to reflect the changes in the dataset
+
+"""
+33-concantenation
+"""
+
+New_col=pd.read_csv('Data_New.csv')  #read csv to dataset
+
+Data_set10=pd.concat([Data_set8,New_col],axis=1)  #concatenate the datasets,second item to the first item, axis=1 column axis. axis=0 for row concat, axis =1 for column concat
+
+
+
+"""
+34- Dummy coding
+"""
+Data_set10.info()
+
+#convert the data in to machine understandable format is a dummy coding
+
+
+Data_set11=pd.get_dummies(Data_set10)
+
+Data_set11.info()
+
+
+
+"""
+35- Normalization
+"""
+
+from sklearn.preprocessing import minmax_scale,normalize  #
+
+#%%
+"""
+37 Supervised Learning
+"""
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+
+from sklearn.datasets import load_iris
+iris=load_iris()
+
+iris.feature_names
+
+Data_iris=iris.data
+
+Data_iris=pd.DataFrame(Data_iris,columns=iris.feature_names)
+
+Data_iris['label']=iris.target
+
+
+plt.scatter(Data_iris.iloc[:,2],Data_iris.iloc[:,3],c=iris.target) ##c is colour, which is based on target
+
+plt.xlabel('Petal length,cm ')
+plt.ylabel('petal width,cm')
+plt.show() 
+x=Data_iris.iloc[:,0:4]
+y=Data_iris.iloc[:,4]
+
+"""
+38 K-NN concepts
+
+NOtes about K-NN 
+
+"""
+
+"""
+39- K-NN model Development
+"""
+from sklearn.neighbors import KNeighborsClassifier
+knn=KNeighborsClassifier(n_neighbors=6,metric="minkowski",p=1)  # uses 6 neighbours, minkowski for dts cal, and p=2 tells to manhattan method
+
+knn.fit(x,y) # fit is the method and x and y values are fitted with the model named knn
+
+x_n=np.array([[5.6,3.4,1.4,0.1]])  # new data to be checked with the trained model
+
+knn.predict(x_n) # this gives output of zero because it refers to setosa (target names)
+
+x_n2=np.array([[7.5,4,5.5,2]])
+
+knn.predict(x_n2)  # predicted as 2
+
+"""
+40 - K-NN Training set and test set creation 
+"""
+
+# spliting the data set 80% for train the  model and 20% for testing
+
+
+from sklearn.model_selection import train_test_split
+
+x_train,x_test,y_train,y_test=train_test_split(x,y,test_size=0.2,train_size=0.8,random_state=88,shuffle=True,stratify=y)
+
+"""
+ the order of the LHS are important,
+test_size is 0.2 ie, 20% of data for training. 
+random._state is 88, by this setting this number we can recreate same data again by using same random state value,
+stuffle is to stuffle the data so the data will stuffles,
+stratify split the data in a wway that each feature have equal amount ie 20% of each feature will be there in the training model here y is the label- 0,1,2,3
+
+
+"""
+
+
+from sklearn.neighbors import KNeighborsClassifier
+knn=KNeighborsClassifier(n_neighbors=6,metric="minkowski",p=1)  # uses 6 neighbours, minkowski for dts cal, and p=2 tells to manhattan method
+
+knn.fit(x_train,y_train)# fit the 80% train model data from split
+
+predicted_types=knn.predict(x_test) # predict the 20% of the data
+
+
+# Score accuracy metrics of the model 
+ 
+from sklearn  import metrics
+
+metrics.accuracy_score(y_test,predicted_types)  # gives the accuracy of predicted model and actual test model, 96% accuracy
+
+"""
+41- Decision tree- basics
+
+42- Decision Tree model Development
+"""
+
+
+
+from sklearn.tree import DecisionTreeClassifier  # import decision tree classifier
+from sklearn.metrics import accuracy_score  # import accuracy score
+
+Dt=DecisionTreeClassifier() # Decision tree classifier model
+
+Dt.fit(x_train,y_train)  # fit the data to thge model
+
+predicted_types_Dt=Dt.predict(x_test) # predicting the trained 80% of data with the 20% test data
+
+accuracy_score(y_test,predicted_types_Dt) # getting the accuracy score of 96%
+
+
+"""
+43-Decision tree -cross validation
+
+"""
+
+from sklearn.model_selection import cross_val_score
+
+scores_Dt=cross_val_score(Dt,x,y,cv=10)  # Dt is developed model 'tree', x,y is the data sets, cv is the K number which is number of folds, it will show 10 scores for each folds it created.
+
+"""
+44-Naive Bayes model
+
+45-Naive Bayes model development
+"""
+
+from sklearn.naive_bayes import GaussianNB
+
+NB=GaussianNB()
+NB.fit(x_train,y_train)
+
+predicted_types_NB=NB.predict(x_test)
+
+accuracy_score(y_test,predicted_types_NB)
+
+# cross validation is 
+
+scores_NB=cross_val_score(NB, x,y,cv=10)
+
+#%%
+
+"""
+46- Logistic Regression Concepts
+47- Logistic Regression model development
+"""
+
+from sklearn.datasets import load_breast_cancer
+
+data_c=load_breast_cancer()
+
+x=data_c.data   # gets the data to x 
+y=data_c.target # gets the target value to y
+
+from sklearn.model_selection import train_test_split
+
+x_train,x_test,y_train,y_test=train_test_split(x,y,test_size=0.3,train_size=0.7,random_state=88)
+
+from sklearn.linear_model import LogisticRegression
+
+Lr=LogisticRegression()
+Lr.fit(x_train,y_train)
+predicted_class_Lr=Lr.predict(x_test)
+
+from sklearn.metrics import accuracy_score
+from sklearn.model_selection import cross_val_score
+
+accuracy_score(y_test,predicted_class_Lr)
+
+# cross validation is 
+
+scores_Lr=cross_val_score(Lr, x,y,cv=10)
+
+
+"""
+48- Model Evaluation metrics-concepts
+
+49- Model Evaluation calculating with python
+"""
+
+## confusion_matrix, classification_report
+
+from sklearn.metrics import confusion_matrix, classification_report
+
+conf_mat=confusion_matrix(y_test,predicted_class_Lr)
+
+class_rep=classification_report(y_test,predicted_class_Lr)
+
+
+# ROC curve
+
+from sklearn.metrics import roc_curve
+import matplotlib.pyplot as plt
+
+#predict_proba will give probability of pediction of  cancer or not cancer
+
+y_proba= Lr.predict_proba(x_test)  #  0 is not cancer, 1 is cancer
+
+# first column the target is 0 that is not cancer and second column target is 1 that is cancer
+
+y_prob=y_proba[:,1]  
+
+FPR,TPR,Thresholds=roc_curve(y_test,y_prob)
+
+plt.plot(FPR,TPR)
+plt.xlabel('FPR')
+plt.ylabel('TPR')
+plt.show()
+
+
+from sklearn.metrics import roc_auc_score
+
+roc_auc_score(y_test,y_prob)
+
+# repeat this and plot roc and aucfor K-NN, tree, navis and logistic regression
+
+#%%
+
+
+"""
+51-simple and multiple linear Regression 
+
+fetch_california_housing
+
+"""
+
+
+from sklearn.datasets import fetch_california_housing
+import numpy as np
+import pandas as pd
+import matplotlib as plt
+
+cal_housing=fetch_california_housing()
+
+x=cal_housing.data
+y=cal_housing.target
+
+from sklearn.model_selection import train_test_split
+
+
+x_train,x_test,y_train,y_test=train_test_split(x,y,test_size=0.25,train_size=0.75,random_state=76)
+# splitting the data for test and train
+
+from sklearn.preprocessing import MinMaxScaler
+sc=MinMaxScaler(feature_range=(0,1))
+# transform method is used to tansform all the data between the range 0 to 1
+x_train=sc.fit_transform(x_train)
+x_test=sc.fit_transform(x_test) 
+
+#y_train=sc.fit_transform(y_train)
+
+y_train=y_train.reshape(-1,1)  #if reshape is not done before transform then it will give an error , expected 2d array
+y_train=sc.fit_transform(y_train)
+
+#y_test transform is not required
+
+"""
+52-Multiple linear Regression-Model Development
+"""
+
+# simple linear regression for one feature and multiple linear regression for multiple feature.
+
+from sklearn.linear_model import LinearRegression
+
+linear_R=LinearRegression()
+linear_R.fit(x_train,y_train)
+
+predicted_values_MLR=linear_R.predict(x_test) #it will predict the y_test , but the values are normalized btn 0 and 1 , so we need to reverse it, next line
+predicted_values_MLR=sc.inverse_transform(predicted_values_MLR)  # inverse of nomalize
+
+"""
+53- Evaluation metrics - concepts
+54- Evaluation metrics - Implementation
+"""
+
+from sklearn.metrics import mean_absolute_error
+from sklearn.metrics import mean_squared_error
+from sklearn.metrics import r2_score
+
+import math
+
+MAE=mean_absolute_error(y_test, predicted_values_MLR)
+
+MSE=mean_squared_error(y_test,predicted_values_MLR)
+
+RMSE=math.sqrt(MSE)
+
+R2=r2_score(y_test,predicted_values_MLR)
+
+
+def mean_absolute_percentage_error(y_true,y_pred):
+    y_true,y_pred=np.array(y_true),np.array(y_pred)
+    return np.mean(abs((y_true-y_pred)/y_pred))*100
+    
+    
+MAPE=mean_absolute_percentage_error(y_test, predicted_values_MLR)
+
+
+"""
+55-Polynomial linear Regrssion- concepts
+56-Polynomial linear Regrssion- Model Development
+"""
+
+from sklearn.datasets import fetch_california_housing
+import numpy as np
+import pandas as pd
+import matplotlib as plt
+
+cal_housing=fetch_california_housing()
+
+x=cal_housing.data[:,2] # gets the 3rd column data ie, AveRooms feature
+y=cal_housing.target
+
+# no need to normalising as we are using one feature
+
+
+from sklearn.model_selection import train_test_split
+x_train,x_test,y_train,y_test=train_test_split(x,y,random_state=76,test_size=0.25,train_size=0.75)
+
+# change x_train to polynomial format
+
+from sklearn.preprocessing import PolynomialFeatures
+
+poly_p=PolynomialFeatures(degree=2) # to convert polynomial format
+x_train=x_train.reshape(-1,1) # becaomes 2d fromat
+
+poly_x=poly_p.fit_transform(x_train) # transfroms to 1D to 3Dimensional, polynomial format
+
+
+#regression  Model 
+from sklearn.linear_model import LinearRegression
+
+linear_R=LinearRegression()
+
+poly_L_R=linear_R.fit(poly_x,y_train)
+
+
+x_test=x_test.reshape(-1,1) # becaomes 2d fromat
+
+poly_xt=poly_p.fit_transform(x_test) # transfroms to 1D to 3Dimensional, polynomial format
+
+predicted_values_P =poly_L_R.predict(poly_xt)
+
+
+from sklearn.metrics import r2_score
+
+R2=r2_score(y_test,predicted_values_P)
+
+
+"""
+# exercise- MSE,RMSE, etc as exercise.
+
+
+
+
+"""
+
+
+"""
+57- Random Forest - concepts
+58- Random Forest- model development
+
+"""
+# normalization must be used if no of features are more than one like MLR
+
+from sklearn.datasets import fetch_california_housing
+import numpy as np
+import pandas as pd
+import matplotlib as plt
+
+cal_housing=fetch_california_housing()
+
+x=cal_housing.data
+y=cal_housing.target
+
+from sklearn.model_selection import train_test_split
+
+
+x_train,x_test,y_train,y_test=train_test_split(x,y,test_size=0.25,train_size=0.75,random_state=76)
+# splitting the data for test and train
+
+from sklearn.preprocessing import MinMaxScaler
+sc=MinMaxScaler(feature_range=(0,1))
+# transform method is used to tansform all the data between the range 0 to 1
+x_train=sc.fit_transform(x_train)
+x_test=sc.fit_transform(x_test) 
+
+#y_train=sc.fit_transform(y_train)
+
+y_train=y_train.reshape(-1,1)  #if reshape is not done before transform then it will give an error , expected 2d array
+y_train=sc.fit_transform(y_train)
+
+
+from sklearn.ensemble import RandomForestRegressor
+
+#random_F=RandomForestRegressor(random_state=33) # run with default parameter
+random_F=RandomForestRegressor(n_estimators=500,max_depth=20,random_state=33) # modify the default parameter
+# increasing the n_estimator increasing accuracy, especially R2, and decreases MAPE (error precentage)
+# max_depth default is zero; setting the value reduces the compuational time
+random_F.fit(x_train,y_train)
+
+predicted_value_RF=random_F.predict(x_test)
+
+
+predicted_value_RF= predicted_value_RF.reshape(-1,1)
+
+predicted_value_RF=sc.inverse_transform(predicted_value_RF)
+
+
+# Evaluation metrics
+
+from sklearn.metrics import mean_absolute_error
+from sklearn.metrics import mean_squared_error
+from sklearn.metrics import r2_score
+
+import math
+
+MAE=mean_absolute_error(y_test, predicted_value_RF)
+
+MSE=mean_squared_error(y_test,predicted_value_RF)
+
+RMSE=math.sqrt(MSE)
+
+R2=r2_score(y_test,predicted_value_RF)
+
+
+def mean_absolute_percentage_error(y_true,y_pred):
+    y_true,y_pred=np.array(y_true),np.array(y_pred)
+    return np.mean(abs((y_true-y_pred)/y_pred))*100
+    
+    
+MAPE=mean_absolute_percentage_error(y_test, predicted_value_RF)
+
+#%%
+"""
+59- Support vector Regression -concepts
+59- Support vector Regression -Model Development
+
+"""
+
+from sklearn.datasets import fetch_california_housing
+import numpy as np
+import pandas as pd
+import matplotlib as plt
+
+cal_housing=fetch_california_housing()
+
+x=cal_housing.data
+y=cal_housing.target
+
+from sklearn.model_selection import train_test_split
+
+
+x_train,x_test,y_train,y_test=train_test_split(x,y,test_size=0.25,train_size=0.75,random_state=76)
+# splitting the data for test and train
+
+from sklearn.preprocessing import MinMaxScaler
+sc=MinMaxScaler(feature_range=(0,1))
+# transform method is used to tansform all the data between the range 0 to 1
+x_train=sc.fit_transform(x_train)
+x_test=sc.fit_transform(x_test) 
+
+#y_train=sc.fit_transform(y_train)
+
+y_train=y_train.reshape(-1,1)  #if reshape is not done before transform then it will give an error , expected 2d array
+y_train=sc.fit_transform(y_train)
+
+from sklearn.svm import SVR
+
+regressor_SVR=SVR(kernel="rbf")
+
+regressor_SVR.fit(x_train,y_train)
+
+predicted_values_SVR= regressor_SVR.predict(x_test)
+predicted_values_SVR=predicted_values_SVR.reshape(-1,1)
+predicted_values_SVR=sc.inverse_transform(predicted_values_SVR)
+
+y_test=y_test.reshape(-1,1)
+
+#evaluation
+
+from sklearn.metrics import mean_absolute_error
+from sklearn.metrics import mean_squared_error
+from sklearn.metrics import r2_score
+
+import math
+
+MAE=mean_absolute_error(y_test, predicted_values_SVR)
+
+MSE=mean_squared_error(y_test,predicted_values_SVR)
+
+RMSE=math.sqrt(MSE)
+
+R2=r2_score(y_test,predicted_values_SVR)
+
+
+def mean_absolute_percentage_error(y_true,y_pred):
+    y_true,y_pred=np.array(y_true),np.array(y_pred)
+    return np.mean(abs((y_true-y_pred)/y_pred))*100
+    
+    
+MAPE=mean_absolute_percentage_error(y_test, predicted_values_SVR)
+
+
+"""
+Exercise-evaluate and compare SVR, Random forest, PLR, MLR
+
+"""
+
+
+"""
+Unsupervised learning
+
+chap 64
+"""
+ 
+from sklearn.datasets import load_iris
+import numpy as np
+import matplotlib.pyplot as plt
+
+iris=load_iris()
+
+Data_iris=iris.data
+
+
+from sklearn.cluster import KMeans
+
+kmns=KMeans(n_clusters=3)
+
+kmns.fit(Data_iris)
+
+labels=kmns.predict(Data_iris)
+
+ctn=kmns.cluster_centers_
+
+plt.scatter(Data_iris[:,2],Data_iris[:,3],c=labels) # plots the 3rd and 4th column of the iris data(petal length and petal width)
+plt.scatter(ctn[:,2],ctn[:,3],marker='o',color="red",s=120) #(petal length and petal width) centre,
+plt.xlabel('petal len (cm)')
+plt.ylabel('petal width(cm')
+plt.show()
+
+
+"""
+chap-66. K-means Model Evaluation
+"""
+# finding the optimal clusters using the inertia value so loop created from 1 to 10 and inertia values are compared. refer the curve inertia vs cluster in ine note
+kmns.inertia_
+
+k_inertia= []
+
+for i in range(1,10):
+    kmns=KMeans(n_clusters=i,random_state=44)
+    kmns.fit(Data_iris)
+    k_inertia.append(kmns.inertia_)
+plt.plot(range(1,10),k_inertia,color='green',marker='o') # ploting k_inertia vs cluster number, inertia must be low
+plt.xlabel('number of k')
+plt.ylabel('inertia')
+plt.show()
+
+"""
+chap-67- DBSCAN concept
+Chap 68- DBSCAN Model development
+"""
+
+from sklearn.datasets import load_iris
+import numpy as np
+import matplotlib.pyplot as plt
+
+iris=load_iris()
+
+Data_iris=iris.data
+
+from sklearn.cluster import DBSCAN
+
+dbs=DBSCAN(eps=0.7,min_samples=4) # eps is circle size
+dbs.fit(Data_iris)
+
+
+labels=dbs.labels_  # -1 represents abnormality or outliers detected by dbscan
+plt.scatter(Data_iris[:,2],Data_iris[:,3],c=labels) # plots the 3rd and 4th column of the iris data(petal length and petal width)
+plt.show()
+
+
+"""
+chap-70- Hierarchical clustering model develoopment
+"""
+
+
+from scipy.cluster.hierarchy import dendrogram,linkage,fcluster
+hr=linkage(Data_iris,method='complete')
+
+dnd=dendrogram(hr)
+
+
+labels=fcluster(hr,1,criterion='distance')  #if t is small not allow to form cluster (too small means each sample will form a separate cluster), if t is big then it forms only one cluster
+plt.scatter(Data_iris[:,2,],Data_iris[:,3],c=labels)   # petal width and petal width
+plt.show()
+
+# change the t, criterion ,method and see the results.
+
+"""
+chap-71- Hyper parameter optimization-model tuning
+chap-72-support vector regression-model tuning
+
+"""
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
